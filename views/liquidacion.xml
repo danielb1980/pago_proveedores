@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <record id="action_liquidacion_tree"              model="ir.actions.act_window">
+            <field name="name">Liquidacion</field>
+            <field name="res_model">liquidacion.liquidacion</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Crear nueva Liquidacion
+                </p>
+            </field>
+    </record>
+        <menuitem id="liquidacion_menu_root" name="Liquidacion a Proveedores" sequence="7"/>
+        <menuitem id="liquidacion_menu"  name="Liquidacion" parent="liquidacion_menu_root" action="action_liquidacion_tree" sequence="0"/>
+    </data>
+</odoo> 
