@@ -2,15 +2,45 @@
     <data>
         <record id="action_liquidacion_tree"              model="ir.actions.act_window">
             <field name="name">Liquidacion</field>
-            <field name="res_model">pago_proveedores.liquidacion</field>
+            <field name="res_model">liquidacion.liquidacion</field>
             <field name="view_mode">tree,form</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Crear nueva Liquidacion
                 </p>
             </field>
-    </record>
+        </record>
+
+        <record id="action_liquidacion_view"              model="ir.ui.view">
+            <field name="name">Liquidacion</field>
+            <field name="model">liquidacion.liquidacion</field>
+            <field name="arch" type="xml">
+                <tree>
+                 <field name="id"/>
+                 <field name="create_date"/>
+                 <field name="create_uid"/>
+                 <field name="proveedor"/>
+                 <field name="monto"/>
+                </tree>
+            </field>
+                  
+        </record>
+       <record id="action_proveedores_tree"              model="ir.actions.act_window">
+            <field name="name">Proveedores</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Crear nueva Liquidacion
+                </p>
+            </field>
+        </record>
+
+
+
         <menuitem id="liquidacion_menu_root" name="Liquidacion a Proveedores" sequence="7"/>
         <menuitem id="liquidacion_menu"  name="Liquidacion" parent="liquidacion_menu_root" action="action_liquidacion_tree" sequence="0"/>
+        <menuitem id="liquidacion_proveedores_menu"  name="Proveedores" parent="liquidacion_menu_root" action="action_proveedores_tree" sequence="1"/>
+        
     </data>
 </odoo> 
