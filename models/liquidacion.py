@@ -30,6 +30,8 @@ class liquidacion(models.Model):
         index=True
     )
     
+    estado = fields.Selection([("B", "Borrador"),("A", "Aprobado")])
+    observaciones = fields.Text(string="Observaciones")
 
 
     class PurchaseMove(models.Model):

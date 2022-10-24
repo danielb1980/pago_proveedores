@@ -25,26 +25,19 @@
                 </tree>
             </field>
             <field name="arch" type="xml">
-                <form string="Request">
+                <form string="Liquidaciones">
                     <sheet>
                         <group>
                             <group>
                                 <field name="partner_id" />
+                                <field name="observaciones"/>
+                                <field name="estado"/>
                             </group>
                             
                         </group>
                          <notebook>
                         <page string="Facturas" name="facturas_liquidar">
                             <field name="purchase_move_ids">
-                                <tree>
-                                    <field name="name"/>
-                                </tree>
-                                <form>
-
-                                    <group>
-                                        <field name="name"/>
-                                    </group>
-                                </form>
 
                             
                             </field>
