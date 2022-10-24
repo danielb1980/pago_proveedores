@@ -28,6 +28,7 @@
     ],
     "license": "AGPL-3",
     'installable': True,
+    'application': True,
     # only loaded in demonstration mode
     'demo': [
     ],        

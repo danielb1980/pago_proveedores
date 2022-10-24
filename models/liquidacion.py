@@ -1,3 +1,4 @@
+from operator import truediv
 from odoo import _,models,fields,api
 
 
@@ -13,6 +14,7 @@ class liquidacion(models.Model):
         index=True,
         default=lambda self: self.env.user.company_id
     )
+    purchase_move_ids= fields.One2many("purchase.move","liquidacion_id",string=_("Facturas"),required=True)
     currency_id = fields.Many2one(related='company_id.currency_id', depends=["company_id"], store=True, ondelete="restrict")
     
     # Usar partner_id para identificar al proveedor
@@ -25,11 +27,14 @@ class liquidacion(models.Model):
         "res.partner",
         string=_("Partner"),
         required=True,
-        index=True,
+        index=True
     )
-    partner_id2 = fields.Many2one(
-        "res.partner",
-        string="Partner",
-        required=True,
-        index=True,
-    )
+    
+
+
+    class PurchaseMove(models.Model):
+        _inherit = "purchase.move"
+        liquidacion_id=fields.Many2one("pago_proveedores.liquidacion",string="Liquidacion")
+        
+
+    
