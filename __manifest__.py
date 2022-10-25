@@ -24,6 +24,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/liquidacion.xml',
+        'views/purchase_move.xml',
         
     ],
     "license": "AGPL-3",
