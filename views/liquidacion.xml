@@ -37,12 +37,40 @@
                         </group>
                          <notebook>
                         <page string="Facturas" name="facturas_liquidar">
-                            <field name="purchase_move_ids">
+                            <field name="LiquidacionLine_ids">
+                                <tree>    
+                                    <field name="factura"/>
 
+                                    <field name="liquidacion_id"/>                                    
+                                    
+                                                           
+                                </tree>
                             
                             </field>
                             
                             
+                        </page>
+                        <page string="ElegirFacturas" name="facturas_seleccionadas">
+                            
+                            <field name="purchase_move_ids">
+                                <tree>
+                                    <field name="id"/>    
+                                    <field name="name"/>
+                                    <field name="towing_order_id"/>
+                                    <field name="customer_id"/>
+                                    <field name="amount_total"/>
+                                    <field name="liquidacion_id"/>
+                                                           
+                                </tree>
+                                <form>
+                                    <field name="id"/>
+                                    <field name="name"/>
+                                    <field name="towing_order_id"/>
+                                    <field name="customer_id"/>
+                                    <field name="amount_total"/>
+
+                                </form>
+                            </field>
                         </page>
                         </notebook>
                     </sheet>
