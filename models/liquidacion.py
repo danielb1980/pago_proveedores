@@ -17,9 +17,6 @@ class liquidacion(models.Model):
     purchase_move_ids= fields.One2many("purchase.move","liquidacion_id",string=_("Facturas"),required=True,readonly=True)
     currency_id = fields.Many2one(related='company_id.currency_id', depends=["company_id"], store=True, ondelete="restrict")
     
-    # Usar partner_id para identificar al proveedor
-    #proveedor = fields.Char(string="Proveedor") 
-    
     monto = fields.Monetary(string="Monto total")
     fecha = fields.Date(string="Fecha Liquidacion", default=fields.Datetime.now)
     
@@ -27,8 +24,9 @@ class liquidacion(models.Model):
         "res.partner",
         string=_("Partner"),
         required=True,
-        index=True
+        index=True,
+        ondelete="restrict"
     )
    
-    estado = fields.Selection([("B", "Borrador"),("P", "Pendiente"),("C", "Controlado"),("A", "Aprobado"),("P", "Pagado")])
+    estado = fields.Selection([("B", "Borrador"),("P", "Pendiente"),("C", "Controlado"),("A", "Aprobado"),("P", "Pagado")], default="B")
     observaciones = fields.Text(string="Observaciones")
