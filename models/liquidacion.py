@@ -15,7 +15,6 @@ class liquidacion(models.Model):
         default=lambda self: self.env.user.company_id
     )
     purchase_move_ids= fields.One2many("purchase.move","id",string=_("Facturas"),required=True)
-    
     currency_id = fields.Many2one(related='company_id.currency_id', depends=["company_id"], store=True, ondelete="restrict")
     
     # Usar partner_id para identificar al proveedor
@@ -42,6 +41,6 @@ class liquidacion(models.Model):
     class LiquidacionLine(models.Model):
         _name = 'pago_proveedores.liquidacion.line'
         factura=fields.Many2one("purchase.move",string="Factura")
-        
+
         liquidacion_id=fields.Many2one("pago_proveedores.liquidacion",string="Liquidacion")
     
