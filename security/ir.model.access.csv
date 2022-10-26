@@ -1,3 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_pago_proveedores_liquidacion,pago_proveedores.liquidacion,model_pago_proveedores_liquidacion,base.group_user,1,1,1,1
-access_pago_proveedores_liquidacion_line,pago_proveedores.liquidacion.line,model_pago_proveedores_liquidacion_line,base.group_user,1,1,1,1
