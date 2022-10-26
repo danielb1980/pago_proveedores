@@ -104,7 +104,7 @@
             </field>
         </record>
         <record id="action_facturas_tree"              model="ir.actions.act_window">
-            <field name="name">Proveedores</field>
+            <field name="name">Facturas</field>
             <field name="res_model">purchase.move</field>
             <field name="view_mode">tree,form</field>
             <field name="help" type="html">

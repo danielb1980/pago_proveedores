@@ -33,15 +33,9 @@ class liquidacion(models.Model):
     LiquidacionLine_ids=fields.One2many("pago_proveedores.liquidacion.line","liquidacion_id",_("Facturas"))
     estado = fields.Selection([("B", "Borrador"),("A", "Aprobado")])
     observaciones = fields.Text(string="Observaciones")
-
-
-    class PurchaseMove(models.Model):
-        _inherit = "purchase.move"
-        liquidacion_id=fields.Many2one("pago_proveedores.liquidacion",string="Liquidacion")
-        
-    class LiquidacionLine(models.Model):
-        _name = 'pago_proveedores.liquidacion.line'
-        factura=fields.Many2one("purchase.move",string="Factura")
-        
-        liquidacion_id=fields.Many2one("pago_proveedores.liquidacion",string="Liquidacion")
+class LiquidacionLine(models.Model):
+    _name = 'pago_proveedores.liquidacion.line'
+    factura=fields.Many2one("purchase.move",string="Factura")
+      
+    liquidacion_id=fields.Many2one("pago_proveedores.liquidacion",string="Liquidacion")
     
