@@ -14,7 +14,7 @@ class liquidacion(models.Model):
         index=True,
         default=lambda self: self.env.user.company_id
     )
-    purchase_move_ids= fields.One2many("purchase.move","liquidacion_id",string=_("Facturas"),required=True,readonly=True)
+    purchase_move_ids= fields.One2many("purchase.move","liquidacion_id",string=_("Facturas"))
     currency_id = fields.Many2one(related='company_id.currency_id', depends=["company_id"], store=True, ondelete="restrict")
     
     monto = fields.Monetary(string="Monto total")

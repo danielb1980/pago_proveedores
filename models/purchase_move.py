@@ -28,7 +28,10 @@ class PurchaseMove(models.Model):
                 'target': 'current',
                 'res_id': liquidacion.id,
             }
-
+            
+        def action_remove_from_liquidacion(self):
+            self.liquidacion_id = False
+            
         def check(self):
             #_logger.info(all(x == self.partner_id[0] for x in self.partner_id))
             _logger.info(self.partner_id)
