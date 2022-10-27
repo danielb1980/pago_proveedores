@@ -12,13 +12,14 @@ class PurchaseMove(models.Model):
             # self es un recordset de uno o varios purchase.move
             # chequear que sean todos del mismo partner.
             #crear la liquidacion
-
+            total_liquidacion=0
             liquidacion = self.env['pago_proveedores.liquidacion'].create({'partner_id':self.partner_id.id})
            
             for record in self:
                 #agregar las purchase.move a la liquidacion
                 record.liquidacion_id = liquidacion.id
-            
+                total_liquidacion+=record.amount_total
+            liquidacion.monto=total_liquidacion
             return {
                 'name': 'Liquidación',
                 'view_mode': 'form',
