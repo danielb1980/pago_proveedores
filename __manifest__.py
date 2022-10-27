@@ -25,6 +25,7 @@
         'security/ir.model.access.csv',
         'views/liquidacion.xml',
         'views/purchase_move.xml',
+        'wizard/purchase_move_wizard.xml',
         
     ],
     "license": "AGPL-3",
