@@ -37,8 +37,8 @@
                         </group>
                          <notebook>
                         
-                        <page string="Facturas Incluidas" name="facturas_seleccionadas">
-                            
+                        <page string="Facturas Incluidas" name="facturas_seleccionadas">"
+                            <button class="oe_highlight" name="%(action_liquidacion_purchase_move_wizard)d" title="Editar" icon="fa-edit" type="action" string="Editar"/>
                             <field name="purchase_move_ids" readonly="1">
                              
                                 <tree>
@@ -47,7 +47,6 @@
                                     <field name="customer_id"/>
                                     <field name="amount_total"/>
                                     <field name="liquidacion_id"/>
-                                    <button type="object" name="action_remove_from_liquidacion" icon="fa-chain-broken" string="Quitar"/>    
                                 </tree>
                                 
                             </field>
