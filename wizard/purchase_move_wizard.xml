@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="action_liquidacion_purchase_move_wizard" model="ir.actions.act_window">
+        <field name="name">Facturas incluídas en la liquidacion</field>
+        <field name="res_model">pago_proveedores.purchase.move.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <record id="view_liquidacion_purchase_move_wizard" model="ir.ui.view">
+        <field name="name">liquidacion.purchase.move.wizard.form</field>
+        <field name="model">pago_proveedores.purchase.move.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <header />
+                <sheet>
+                    <field name="liquidacion_id" invisible="1" />
+                    <field name="currency_id" invisible="1" />
+                    <group>
+                        <span>
+                            <field name="line_ids" nolabel="1">
+                                <tree create="false" editable="top" delete="false">
+                                    <field name="currency_id" invisible="1" />
+                                    <field name="invoice_date" />
+                                    <field name="purchase_move_id" />
+                                    <field name="customer_id" />
+                                    <field attrs="{'readonly':True}" name="amount" widget="monetary" />
+                                    <field name="selected" widget="boolean_toggle" />
+                                </tree>
+                            </field>
+                        </span>
+                    </group>
+                    <group>
+                        <field name="amount_selected" widget="monetary" />
+                    </group>
+                </sheet>
+                <footer>
+                    <button class="oe_highlight" name="update_selection" string="Update Selection" type="object" />
+                    <button class="oe_link oe_inline" special="cancel" string="Close" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

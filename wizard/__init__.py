@@ -1,1 +1,1 @@
-from . import wizard
+from . import purchase_move_wizard
