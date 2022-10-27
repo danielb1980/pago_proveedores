@@ -10,6 +10,14 @@
             <field name="state">code</field>
             <field name="code">action = records.action_liquidate()</field>
         </record>
+        <record id="purchase_move_check" model="ir.actions.server">
+            <field name="name">Check si son los mismos Partner</field>
+            <field name="model_id" ref="model_purchase_move"/>
+            <field name="binding_model_id" ref="towing_service.model_purchase_move"/>
+            <field name="binding_view_types">list,form</field>
+            <field name="state">code</field>
+            <field name="code">action = records.check()</field>
+        </record>
         <record id="purchase_move_view_search" model="ir.ui.view">
             <field name="name">Pruchase move search view</field>
             <field name="model">purchase.move</field>

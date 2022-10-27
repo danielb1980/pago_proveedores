@@ -1,4 +1,7 @@
+from pickle import TRUE
 from odoo import fields,models
+import logging
+_logger = logging.getLogger(__name__)
 
 class PurchaseMove(models.Model):
         _inherit = "purchase.move"
@@ -8,8 +11,9 @@ class PurchaseMove(models.Model):
             # self es un recordset de uno o varios purchase.move
             # chequear que sean todos del mismo partner.
             #crear la liquidacion
+
             liquidacion = self.env['pago_proveedores.liquidacion'].create({'partner_id':self.partner_id.id})
-            
+           
             for record in self:
                 #agregar las purchase.move a la liquidacion
                 record.liquidacion_id = liquidacion.id
@@ -24,4 +28,27 @@ class PurchaseMove(models.Model):
                 'target': 'current',
                 'res_id': liquidacion.id,
             }
+
+        def check(self):
+            #_logger.info(all(x == self.partner_id[0] for x in self.partner_id))
+            _logger.info(self.partner_id)
+            if (all(x == self.partner_id[0] for x in self.partner_id)):
+                _logger.info("todos iguales")
+                return True
+            else:
+                _logger.info("NO SON IGUALEs")
+                return False
+
+            
+        
+            
+
+                
+            
+           
+            
+            
+            
+ 
+
     
