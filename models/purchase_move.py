@@ -1,5 +1,6 @@
 from pickle import TRUE
-from odoo import fields,models
+from odoo import fields,models,_
+from odoo.exceptions import ValidationError
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -34,10 +35,13 @@ class PurchaseMove(models.Model):
             _logger.info(self.partner_id)
             if (all(x == self.partner_id[0] for x in self.partner_id)):
                 _logger.info("todos iguales")
-                return True
+
+                
             else:
                 _logger.info("NO SON IGUALEs")
-                return False
+                
+                raise ValidationError(_("Debe seleccionar facturas de unb solo Conductor"))
+                
 
             
         
