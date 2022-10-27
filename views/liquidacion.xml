@@ -37,7 +37,7 @@
                         </group>
                          <notebook>
                         
-                        <page string="Facturas Incluidas" name="facturas_seleccionadas" readonly="1">
+                        <page string="Facturas Incluidas" name="facturas_seleccionadas" >
                             
                             <field name="purchase_move_ids" readonly="1">
                              
@@ -48,6 +48,7 @@
                                     <field name="customer_id"/>
                                     <field name="amount_total"/>
                                     <field name="liquidacion_id"/>
+                                    <button name="quitar_factura" string="Quitar" class="oe_highlight"/>
                                                            
                                 </tree>
                                 
