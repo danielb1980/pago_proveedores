@@ -23,9 +23,10 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        'wizard/purchase_move_wizard.xml',
         'views/liquidacion.xml',
         'views/purchase_move.xml',
-        'wizard/purchase_move_wizard.xml',
+    
         
     ],
     "license": "AGPL-3",
