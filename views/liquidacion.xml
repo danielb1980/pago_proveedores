@@ -27,12 +27,15 @@
             </field>
             <field name="arch" type="xml">
                 <form string="Liquidaciones">
+                    <header>
+                    <field name="estado" widget="statusbar"  options="{'fold_field': 'fold'}" />
+                    </header>
                     <sheet>
                         <group>
                             <group>
                                 <field name="partner_id" />
                                 <field name="observaciones"/>
-                                <field name="estado"/>
+                                
                             </group>
                             
                         </group>

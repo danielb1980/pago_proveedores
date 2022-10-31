@@ -32,9 +32,9 @@ class liquidacion(models.Model):
         ondelete="restrict"
     )
     
-    estado = fields.Selection([("B", "Borrador"),("P", "Pendiente"),("C", "Controlado"),("A", "Aprobado"),("P", "Pagado")], default="B")
+    estado = fields.Selection([("B", "Borrador"),("P", "Pendiente"),("C", "Controlado"),("A", "Aprobado"),("P", "Pagado")],string="Estado",index=True, default="B")
     observaciones = fields.Text(string="Observaciones")
-    
+   
     @api.onchange('purchase_move_ids')
     def check_liquidacion_id(self):
         facturas=self.env['purchase.move']
