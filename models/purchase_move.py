@@ -13,6 +13,22 @@ class PurchaseMove(models.Model):
             # chequear que sean todos del mismo partner.
             #crear la liquidacion
             total_liquidacion=0
+            if (all(x == self.partner_id[0] for x in self.partner_id) ):
+                _logger.info("todos iguales")
+            
+            else:
+                _logger.info("NO SON IGUALEs")
+                
+                raise ValidationError(_("Debe seleccionar facturas de unb solo Conductor"))
+            
+            for record in self:
+                #agregar las purchase.move a la liquidacion
+                _logger.info(self.liquidacion_id)
+                _logger.info(len(record.liquidacion_id))
+
+                if len(record.liquidacion_id)>0:
+                    raise ValidationError(_("Una factura o mas se encuentran incluidas en otra liquidacion"))
+
             liquidacion = self.env['pago_proveedores.liquidacion'].create({'partner_id':self.partner_id.id})
            
             for record in self:
@@ -34,17 +50,7 @@ class PurchaseMove(models.Model):
         def action_remove_from_liquidacion(self):
             self.liquidacion_id = False
             
-        def check(self):
-            #_logger.info(all(x == self.partner_id[0] for x in self.partner_id))
-            _logger.info(self.partner_id)
-            if (all(x == self.partner_id[0] for x in self.partner_id)):
-                _logger.info("todos iguales")
-
-                
-            else:
-                _logger.info("NO SON IGUALEs")
-                
-                raise ValidationError(_("Debe seleccionar facturas de unb solo Conductor"))
+  
                 
 
             

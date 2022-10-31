@@ -1,5 +1,9 @@
 from operator import truediv
+from xml.dom import ValidationErr
 from odoo import _,models,fields,api
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 class liquidacion(models.Model):
@@ -27,6 +31,19 @@ class liquidacion(models.Model):
         index=True,
         ondelete="restrict"
     )
-   
+    
     estado = fields.Selection([("B", "Borrador"),("P", "Pendiente"),("C", "Controlado"),("A", "Aprobado"),("P", "Pagado")], default="B")
     observaciones = fields.Text(string="Observaciones")
+    
+    @api.onchange('purchase_move_ids')
+    def check_liquidacion_id(self):
+        facturas=self.env['purchase.move']
+        _logger.info(self.purchase_move_ids)
+        for record in facturas:
+            _logger.info(record.liquidacion_id)
+            if record.liquidacion_id!=False:
+                
+                raise ValidationErr("la factura ya fue incluida en otra liquidacion")
+
+
+       
