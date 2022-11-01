@@ -32,7 +32,7 @@ class liquidacion(models.Model):
         ondelete="restrict"
     )
     
-    estado = fields.Selection([("B", "Borrador"),("P", "Pendiente"),("C", "Controlado"),("A", "Aprobado"),("P", "Pagado")],string="Estado",index=True, default="B")
+    estado = fields.Selection([("B", "Borrador"),("E", "Enviado"),("C", "Controlado"),("A", "Aprobado"),("P", "Pagado")],string="Estado",index=True, default="B")
     observaciones = fields.Text(string="Observaciones")
    
     @api.onchange('purchase_move_ids')
@@ -45,5 +45,20 @@ class liquidacion(models.Model):
                 
                 raise ValidationErr("la factura ya fue incluida en otra liquidacion")
 
+
+    def action_enviado(self):
+          self.ensure_one()
+          self.estado=('E')
+
+    def action_controlado(self):
+          self.ensure_one()
+          self.estado=('C')
+
+    def action_aprobado(self):
+          self.ensure_one()
+          self.estado=('A')
+    def action_pagado(self):
+          self.ensure_one()
+          self.estado=('P')
 
        
