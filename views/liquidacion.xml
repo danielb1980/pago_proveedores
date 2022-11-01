@@ -28,10 +28,10 @@
             <field name="arch" type="xml">
                 <form string="Liquidaciones">
                     <header>
-                    <button class="oe_highlight" type="object" name="action_enviado" string="Enviar"  />
-                    <button class="oe_highlight" type="object" name="action_controlado" string="Controlado"  />
-                    <button class="oe_highlight" type="object" name="action_aprobado" string="Aprobar"  />
-                    <button class="oe_highlight" type="object" name="action_pagado" string="Pagar"  />
+                    <button class="oe_highlight" type="object" name="action_enviado" string="Enviar" attrs="{'invisible': [('estado', '!=','B')]}" confirm="¿Enviar para control la liquidacion?"  />
+                    <button class="oe_highlight" type="object" name="action_controlado" string="Controlado" attrs="{'invisible': [('estado', '!=','E')]}" confirm="¿Marcar como Controlada la liquidacion?"  />
+                    <button class="oe_highlight" type="object" name="action_aprobado" string="Aprobar"  attrs="{'invisible': [('estado', '!=','C')]}" confirm="¿Autorizar la Liquidacion para el Pago?" />
+                    <button class="oe_highlight" type="object" name="action_pagado" string="Pagar" attrs="{'invisible': [('estado', '!=','A')]}" confirm="¿Desea pagar esta Liquidacion?"  />
                     <field name="estado" widget="statusbar"  options="{'fold_field': 'fold'}" />
                     </header>
                     <sheet>
