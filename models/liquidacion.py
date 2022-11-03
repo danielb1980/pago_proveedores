@@ -22,6 +22,7 @@ class liquidacion(models.Model):
     currency_id = fields.Many2one(related='company_id.currency_id', depends=["company_id"], store=True, ondelete="restrict")
     
     monto = fields.Monetary(string="Monto total")
+    monto2= fields.Monetary(string="Total Liquidado",compute="_compute_amount")
     fecha = fields.Date(string="Fecha Liquidacion", default=fields.Datetime.now)
     
     partner_id = fields.Many2one(
@@ -61,4 +62,10 @@ class liquidacion(models.Model):
           self.ensure_one()
           self.estado=('P')
 
+    @api.depends('purchase_move_ids')
+    def _compute_amount(self):
+        amounts=0
+        for x in self.purchase_move_ids:
+            amounts+= x.amount_total
+        self.monto2 = amounts 
        

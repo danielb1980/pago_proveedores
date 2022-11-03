@@ -8,6 +8,7 @@
                  <field name="id"/>
                  <field name="partner_id"/>
                  <field name="monto"/>
+                 <field name="monto2"/>
                  <field name="fecha"/>
                 </tree>
             </field>
@@ -22,16 +23,17 @@
                  <field name="partner_id"/>
                  <field name="estado"/>
                  <field name="monto"/>
+                 <field name="monto2"/>
                  <field name="fecha"/>
                 </tree>
             </field>
             <field name="arch" type="xml">
                 <form string="Liquidaciones">
                     <header>
-                    <button class="oe_highlight" type="object" name="action_enviado" string="Enviar" attrs="{'invisible': [('estado', '!=','B')]}" confirm="¿Enviar para control la liquidacion?"  />
-                    <button class="oe_highlight" type="object" name="action_controlado" string="Controlado" attrs="{'invisible': [('estado', '!=','E')]}" confirm="¿Marcar como Controlada la liquidacion?"  />
-                    <button class="oe_highlight" type="object" name="action_aprobado" string="Aprobar"  attrs="{'invisible': [('estado', '!=','C')]}" confirm="¿Autorizar la Liquidacion para el Pago?" />
-                    <button class="oe_highlight" type="object" name="action_pagado" string="Pagar" attrs="{'invisible': [('estado', '!=','A')]}" confirm="¿Desea pagar esta Liquidacion?"  />
+                    <button class="oe_highlight" type="object" name="action_enviado" string="Enviar" attrs="{'invisible': [('estado', '!=','B')]}" confirm="¿Enviar para control la liquidacion?" groups="pago_proveedores.pago_proveedores_operator" />
+                    <button class="oe_highlight" type="object" name="action_controlado" string="Controlado" attrs="{'invisible': [('estado', '!=','E')]}" confirm="¿Marcar como Controlada la liquidacion?" groups="pago_proveedores.pago_proveedores_manager" />
+                    <button class="oe_highlight" type="object" name="action_aprobado" string="Aprobar"  attrs="{'invisible': [('estado', '!=','C')]}" confirm="¿Autorizar la Liquidacion para el Pago?" groups="pago_proveedores.pago_proveedores_manager" />
+                    <button class="oe_highlight" type="object" name="action_pagado" string="Pagar" attrs="{'invisible': [('estado', '!=','A')]}" confirm="¿Desea pagar esta Liquidacion?" groups="pago_proveedores.pago_proveedores_pagador" />
                     <field name="estado" widget="statusbar"  options="{'fold_field': 'fold'}" />
                     </header>
                     <sheet>
@@ -125,8 +127,10 @@
             </field>
         </record>
 
-        <menuitem id="liquidacion_menu_root" name="Liquidacion a Proveedores" sequence="7"/>
+        <menuitem id="liquidacion_menu_root" name="Liquidacion a Proveedores" sequence="7"  web_icon="pago_proveedores,static/description/icon.png"/>
         <menuitem id="liquidacion_menu"  name="Liquidacion" parent="liquidacion_menu_root" action="action_liquidaciones" sequence="0"/>
         <menuitem id="liquidacion_facturas_menu"  name="Facturas" parent="liquidacion_menu_root" action="action_facturas_tree" sequence="2"/>
+
+        
     </data>
 </odoo> 

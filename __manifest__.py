@@ -23,6 +23,7 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        'security/pago_proveedores_security.xml',
         'wizard/purchase_move_wizard.xml',
         'views/liquidacion.xml',
         'views/purchase_move.xml',
