@@ -127,9 +127,69 @@
             </field>
         </record>
 
+        <record id="pagos_tree" model="ir.ui.view">
+            <field name="name">Pagos</field>
+            <field name="model">pago_proveedores.pagos</field>
+            <field name="arch" type="xml">
+                <tree>
+                 <field name="id"/>
+                 <field name="liquidacion_id"/>
+                 <field name="medio_de_pago"/>
+                </tree>
+            </field>
+                  
+        </record>
+        <record id="pagos_form" model="ir.ui.view">
+            <field name="name">Pagos</field>
+            <field name="model">pago_proveedores.pagos</field>
+            <field name="arch" type="xml">
+                <tree>
+                 <field name="id"/>
+                 <field name="liquidacion_id"/>
+                 <field name="medio_de_pago"/>
+                </tree>
+            </field>
+            <field name="arch" type="xml">
+                <form string="Pago">
+                    <header>
+                    
+
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="liquidacion_id" />
+                                <field name="medio_de_pago"/>
+                                
+                            </group>
+                            
+                        </group>
+                         
+                    </sheet>
+
+                </form>
+            </field>
+            <record id="action_pagos" model="ir.actions.act_window">
+            <field name="name">PAaos</field>
+            <field name="res_model">pago_proveedores.pagos</field>
+            <field name="view_mode">tree,form</field>
+            
+
+
+
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Crear nuevo pago
+                </p>
+            </field>
+        </record> 
+
+
+
         <menuitem id="liquidacion_menu_root" name="Liquidacion a Proveedores" sequence="7"  web_icon="pago_proveedores,static/description/icon.png"/>
         <menuitem id="liquidacion_menu"  name="Liquidacion" parent="liquidacion_menu_root" action="action_liquidaciones" sequence="0"/>
         <menuitem id="liquidacion_facturas_menu"  name="Facturas" parent="liquidacion_menu_root" action="action_facturas_tree" sequence="2"/>
+        <menuitem id="liquidacion_pagos_menu"  name="Pagos" parent="liquidacion_menu_root" action="action_pagos_tree" sequence="3"/>
 
         
     </data>
