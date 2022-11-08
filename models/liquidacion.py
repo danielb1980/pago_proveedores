@@ -1,6 +1,5 @@
-from operator import truediv
-from xml.dom import ValidationErr
 from odoo import _,models,fields,api
+from odoo.exceptions import ValidationError
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -43,13 +42,12 @@ class liquidacion(models.Model):
         for record in facturas:
             _logger.info(record.liquidacion_id)
             if record.liquidacion_id!=False:
-                
-                raise ValidationErr("la factura ya fue incluida en otra liquidacion")
+                raise ValidationError("la factura ya fue incluida en otra liquidacion")
 
 
     def action_enviado(self):
-          self.ensure_one()
-          self.estado=('E')
+        for record in self:
+          record.estado='E'
 
     def action_controlado(self):
           self.ensure_one()
@@ -64,8 +62,9 @@ class liquidacion(models.Model):
 
     @api.depends('purchase_move_ids')
     def _compute_amount(self):
-        amounts=0
-        for x in self.purchase_move_ids:
-            amounts+= x.amount_total
-        self.monto2 = amounts 
+        self.monto2 = sum([x.amount_total for x in self.purchase_move_ids])
+        # amounts=0
+        # for x in self.purchase_move_ids:
+        #     amounts+= x.amount_total
+        # self.monto2 = amounts 
        
