@@ -116,6 +116,7 @@
                 </p>
             </field>
         </record>
+
         <record id="action_facturas_tree"              model="ir.actions.act_window">
             <field name="name">Facturas</field>
             <field name="res_model">purchase.move</field>
@@ -169,8 +170,10 @@
 
                 </form>
             </field>
-            <record id="action_pagos" model="ir.actions.act_window">
-            <field name="name">PAaos</field>
+        </record>
+
+        <record id="action_pagos_tree" model="ir.actions.act_window">
+            <field name="name">Pagos</field>
             <field name="res_model">pago_proveedores.pagos</field>
             <field name="view_mode">tree,form</field>
             
@@ -182,6 +185,7 @@
                     Crear nuevo pago
                 </p>
             </field>
+            
         </record> 
 
 
@@ -191,6 +195,5 @@
         <menuitem id="liquidacion_facturas_menu"  name="Facturas" parent="liquidacion_menu_root" action="action_facturas_tree" sequence="2"/>
         <menuitem id="liquidacion_pagos_menu"  name="Pagos" parent="liquidacion_menu_root" action="action_pagos_tree" sequence="3"/>
 
-        
     </data>
 </odoo> 

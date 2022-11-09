@@ -1,1 +1,1 @@
-from . import liquidacion, purchase_move
+from . import liquidacion, purchase_move,pagos
