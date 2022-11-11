@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="action_pago_proveedores_pagos_wizard" model="ir.actions.act_window">
+        <field name="name">Pago de Liquidacion</field>
+        <field name="res_model">pago_proveedores.pagos.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <record id="view_pagos_wizard" model="ir.ui.view">
+        <field name="name">liquidacion.pagos.wizard.form</field>
+        <field name="model">pago_proveedores.pagos.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <header />
+                <sheet>
+                    <group>
+                     <field name="liquidacion_id" invisible="1" />
+                    
+                    
+                    
+                    </group>
+                </sheet>
+                <footer>
+                   
+                    <button class="oe_link oe_inline" special="cancel" string="Close" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

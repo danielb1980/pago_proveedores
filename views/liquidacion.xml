@@ -47,7 +47,7 @@
                         </group>
                          <notebook>
                         
-                        <page string="Facturas Incluidas" name="facturas_seleccionadas">"
+                        <page string="Facturas Incluidas" name="facturas_seleccionadas">
                             <button class="oe_highlight" name="%(action_liquidacion_purchase_move_wizard)d" title="Editar" icon="fa-edit" type="action" string="Editar"/>
                             <field name="purchase_move_ids" readonly="1">
                              
@@ -140,6 +140,7 @@
 
                 </tree>
             </field>
+             
                   
         </record>
         <record id="pagos_form" model="ir.ui.view">
@@ -161,6 +162,7 @@
 
                     </header>
                     <sheet>
+                    <button class="oe_highlight" name="%(action_pago_proveedores_pagos_wizard)d" title="Pagar" icon="fa-edit" type="action" string="pagar"/>
                         <group>
                             <group>
                                 <field name="liquidacion_id" />

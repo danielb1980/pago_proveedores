@@ -1,1 +1,1 @@
-from . import purchase_move_wizard
+from . import purchase_move_wizard,pago_proveedores_wizard
