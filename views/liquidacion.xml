@@ -136,6 +136,8 @@
                  <field name="id"/>
                  <field name="liquidacion_id"/>
                  <field name="medio_de_pago"/>
+                 <field name="partner_id"/>
+
                 </tree>
             </field>
                   
@@ -147,7 +149,9 @@
                 <tree>
                  <field name="id"/>
                  <field name="liquidacion_id"/>
-                 <field name="medio_de_pago"/>
+                 <field name="partner_id"/>
+                 <field name="parnter_bank_id"/>
+
                 </tree>
             </field>
             <field name="arch" type="xml">
@@ -161,6 +165,9 @@
                             <group>
                                 <field name="liquidacion_id" />
                                 <field name="medio_de_pago"/>
+                                <field name="partner_id"/>
+                                <field name="partner_bank_id"/>
+                               <!-- <field name="partner_account"/>-->
                                 
                             </group>
                             
