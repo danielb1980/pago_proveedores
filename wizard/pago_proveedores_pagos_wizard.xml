@@ -14,10 +14,14 @@
                 <header />
                 <sheet>
                     <group>
-                     <field name="liquidacion_id" invisible="1" />
-                    
-                    
-                    
+                     <field name="liquidacion_id" readonly="True"/>
+                     
+                     <field name="partner_id" readonly="True"/>
+                     <field name="medio_de_pago"/>
+                     <tree>
+                        <field name="partner_bank_id" />
+                        
+                     </tree>
                     </group>
                 </sheet>
                 <footer>
