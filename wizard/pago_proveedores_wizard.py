@@ -30,6 +30,6 @@ class LiquidacionPagos(models.TransientModel):
 
     amount = fields.Monetary('Monto seleccionado')
     partner_bank_id=fields.One2many(related='partner_id.bank_ids')
-    partner_account=fields.Char(related='partner_bank_id.acc_number')
-    
+    partner_account=fields.Char(related='partner_bank_id.acc_number',string=_("CBU/CVU"))
+    comprobante=fields.Char(string=_("Nº Comprobante"))
    
