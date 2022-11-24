@@ -20,6 +20,17 @@ class pagos(models.Model):
         ondelete="restrict"
     )
 
+    company_id = fields.Many2one(
+        "res.company",
+        string=_("Company"),
+        required=True,
+        index=True,
+        default=lambda self: self.env.user.company_id
+    )
+    currency_id = fields.Many2one(related='liquidacion_id.currency_id', depends=["liquidacion_id"], store=True, ondelete="restrict")
+
+    amount=fields.Monetary('Monto')
+
     partner_phone=fields.Char(related='partner_id.phone')
     partner_bank_id=fields.One2many(related='partner_id.bank_ids')
     partner_account=fields.Char(related='partner_bank_id.acc_number')

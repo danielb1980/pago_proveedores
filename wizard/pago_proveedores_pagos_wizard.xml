@@ -21,6 +21,7 @@
                      
                      <field name="partner_account" />
                      <field name="comprobante" />
+                     <field name="amount" />
                      
                     </group>
                 </sheet>

@@ -154,6 +154,7 @@
                  <field name="liquidacion_id"/>
                  <field name="partner_id"/>
                  <field name="parnter_account"/>
+                 <field name="amount"/>
 
                 </tree>
             </field>
@@ -170,7 +171,8 @@
                                 <field name="liquidacion_id" />
                                 <field name="medio_de_pago"/>
                                 <field name="partner_id"/>
-                                <field name="partner_bank_id"/>
+                                <field name="partner_account"/>
+                                <field name="amount"/>
                                <!-- <field name="partner_account"/>-->
                                 
                             </group>
