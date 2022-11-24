@@ -12,13 +12,7 @@ class LiquidacionPagos(models.TransientModel):
     liquidacion_id = fields.Many2one('pago_proveedores.liquidacion', required=True, default=_default_liquidacion)
     currency_id = fields.Many2one(related='liquidacion_id.currency_id', depends=["liquidacion_id"], store=True, ondelete="restrict")
     medio_de_pago=fields.Selection([("E", "Efectivo"),("T", "Transferencia"),("M", "Mercadopago")],string="Medio de Pago",index=True, default="M")
-    cuenta=fields.Many2one(
-        "res.partner",
-        string=_("Cuenta"),
-        required=True,
-        index=True,
-        ondelete="restrict"
-    )
+    
     partner_id = fields.Many2one(
         "res.partner",
         string=_("Partner"),
@@ -31,5 +25,8 @@ class LiquidacionPagos(models.TransientModel):
     amount = fields.Monetary('Monto seleccionado')
     partner_bank_id=fields.One2many(related='partner_id.bank_ids')
     partner_account=fields.Char(related='partner_bank_id.acc_number',string=_("CBU/CVU"))
+    
     comprobante=fields.Char(string=_("Nº Comprobante"))
+    def action_pago(self):
+        pago = self.env['pago_proveedores.pagos'].create({'partner_id':self.partner_id.id,'liquidacion_id':self.liquidacion_id.id,'partner_account':self.partner_account,'medio_de_pago':self.medio_de_pago,})
    

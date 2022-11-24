@@ -25,7 +25,8 @@
                     </group>
                 </sheet>
                 <footer>
-                   
+                    <button class="oe_highlight" name="action_pago" title="Pagar" icon="fa-dollar" type="object" string="Pagar"/>
+                    
                     <button class="oe_link oe_inline" special="cancel" string="Close" />
                 </footer>
             </form>

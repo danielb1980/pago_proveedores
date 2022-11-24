@@ -11,13 +11,7 @@ class pagos(models.Model):
     )
     
     medio_de_pago = fields.Selection([("E", "Efectivo"),("T", "Transferencia"),("M", "Mercadopago")],string="Medio de Pago",index=True, default="M")
-    cuenta=fields.Many2one(
-        "res.partner",
-        string=_("Cuenta"),
-        required=True,
-        index=True,
-        ondelete="restrict"
-    )
+    
     partner_id = fields.Many2one(
         "res.partner",
         string=_("Partner"),
@@ -30,4 +24,4 @@ class pagos(models.Model):
     partner_bank_id=fields.One2many(related='partner_id.bank_ids')
     partner_account=fields.Char(related='partner_bank_id.acc_number')
     comprobante=fields.Char(string=_("Nº Comprobante"))
-   
+    
