@@ -135,11 +135,11 @@
             <field name="model">pago_proveedores.pagos</field>
             <field name="arch" type="xml">
                 <tree>
-                 <field name="id"/>
+                 <field name="id" string="N de Pago"/>
+                 <field name="partner_id"/>
                  <field name="liquidacion_id"/>
                  <field name="medio_de_pago"/>
-                 <field name="partner_id"/>
-
+                 <field name="amount"/>
                 </tree>
             </field>
              

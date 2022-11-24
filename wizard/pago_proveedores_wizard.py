@@ -29,7 +29,7 @@ class LiquidacionPagos(models.TransientModel):
         ondelete="restrict",
         related='liquidacion_id.partner_id'
     )
-
+    monto_liquidacion=fields.Monetary('Monto Total Liquidacion',related='liquidacion_id.monto2')
     amount = fields.Monetary('Monto a Pagar')
     partner_bank_id=fields.One2many(related='partner_id.bank_ids')
     partner_account=fields.Char(related='partner_bank_id.acc_number',string=_("CBU/CVU"))
@@ -37,4 +37,5 @@ class LiquidacionPagos(models.TransientModel):
     comprobante=fields.Char(string=_("Nº Comprobante"))
     def action_pago(self):
         pago = self.env['pago_proveedores.pagos'].create({'partner_id':self.partner_id.id,'liquidacion_id':self.liquidacion_id.id,'partner_account':self.partner_account,'medio_de_pago':self.medio_de_pago,'comprobante':self.comprobante,'amount':self.amount})
-   
+        pagar=self.env['pago_proveedores.liquidacion'].search([('id','=',self.liquidacion_id.id)])
+        pagar.estado='P'

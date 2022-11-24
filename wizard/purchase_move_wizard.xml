@@ -30,6 +30,7 @@
                         </span>
                     </group>
                     <group>
+                        
                         <field name="amount_selected" widget="monetary" />
                     </group>
                 </sheet>
