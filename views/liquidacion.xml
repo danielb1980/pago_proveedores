@@ -63,7 +63,20 @@
                                 
                             </field>
                         </page>
-                       
+                       <page string="Pagos Registrados" name="pagos_registrados">
+                        
+                            <field name="pagos_id" readonly="1">
+                             
+                                <tree>
+                                    
+                                    <field name="partner_id"/>
+                                    <field name="amount"/>
+                                    <field name="comprobante"/>
+                                    <field name="partner_account"/>
+                                </tree>
+                                
+                            </field>
+                        </page>
 
                         </notebook>
                     </sheet>

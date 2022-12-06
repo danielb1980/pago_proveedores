@@ -31,7 +31,7 @@ class pagos(models.Model):
 
     amount=fields.Monetary('Monto')
 
-    partner_phone=fields.Char(related='partner_id.phone')
+    
     partner_bank_id=fields.One2many(related='partner_id.bank_ids')
     partner_account=fields.Char(related='partner_bank_id.acc_number')
     comprobante=fields.Char(string=_("Nº Comprobante"))

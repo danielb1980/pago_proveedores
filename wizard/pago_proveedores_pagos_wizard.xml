@@ -22,7 +22,7 @@
                      <field name="partner_account" />
                      <field name="comprobante" />
                      <field name="monto_liquidacion" widget="monetary" />
-                     <field name="amount" />
+                     
                      
                     </group>
                 </sheet>

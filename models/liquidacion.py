@@ -22,6 +22,13 @@ class liquidacion(models.Model):
     
     monto = fields.Monetary(string="Monto total")
     monto2= fields.Monetary(string="Total Liquidado",compute="_compute_amount")
+    pagos_id =fields.One2many(
+        "pago_proveedores.pagos",
+        "liquidacion_id",
+        string=_("Pagos"),
+        index=True,
+        ondelete="restrict"
+    )
     fecha = fields.Date(string="Fecha Liquidacion", default=fields.Datetime.now)
     
     partner_id = fields.Many2one(

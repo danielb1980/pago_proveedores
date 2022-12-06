@@ -1,4 +1,6 @@
+from logging import Logger
 from odoo import api,fields,models,_
+from odoo.exceptions import ValidationError
 
  
     
@@ -10,7 +12,7 @@ class LiquidacionPagos(models.TransientModel):
         return self.env['pago_proveedores.liquidacion'].browse(self._context.get('active_id'))
     
     liquidacion_id = fields.Many2one('pago_proveedores.liquidacion', required=True, default=_default_liquidacion)
-    
+    pagos_ids = fields.One2many('pago_proveedores.pagos','liquidacion_id')
     medio_de_pago=fields.Selection([("E", "Efectivo"),("T", "Transferencia"),("M", "Mercadopago")],string="Medio de Pago",index=True, default="M")
     currency_id = fields.Many2one(related='company_id.currency_id', depends=["company_id"], store=True, ondelete="restrict")
     company_id = fields.Many2one(
@@ -36,6 +38,9 @@ class LiquidacionPagos(models.TransientModel):
     
     comprobante=fields.Char(string=_("Nº Comprobante"))
     def action_pago(self):
-        pago = self.env['pago_proveedores.pagos'].create({'partner_id':self.partner_id.id,'liquidacion_id':self.liquidacion_id.id,'partner_account':self.partner_account,'medio_de_pago':self.medio_de_pago,'comprobante':self.comprobante,'amount':self.amount})
+        
+        pago = self.env['pago_proveedores.pagos'].create({'partner_id':self.partner_id.id,'liquidacion_id':self.liquidacion_id.id,'partner_account':self.partner_account,'medio_de_pago':self.medio_de_pago,'comprobante':self.comprobante,'amount':self.monto_liquidacion})
         pagar=self.env['pago_proveedores.liquidacion'].search([('id','=',self.liquidacion_id.id)])
         pagar.estado='P'
+         
+         
