@@ -22,7 +22,7 @@ class liquidacion(models.Model):
     
     monto = fields.Monetary(string="Monto total")
     monto2= fields.Monetary(string="Total Liquidado",compute="_compute_amount")
-    pagos_id =fields.One2many(
+    pago_ids =fields.One2many(
         "pago_proveedores.pagos",
         "liquidacion_id",
         string=_("Pagos"),

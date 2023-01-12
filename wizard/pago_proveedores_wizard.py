@@ -12,7 +12,7 @@ class LiquidacionPagos(models.TransientModel):
         return self.env['pago_proveedores.liquidacion'].browse(self._context.get('active_id'))
     
     liquidacion_id = fields.Many2one('pago_proveedores.liquidacion', required=True, default=_default_liquidacion)
-    pagos_ids = fields.One2many('pago_proveedores.pagos','liquidacion_id')
+    pago_ids = fields.One2many('pago_proveedores.pagos','liquidacion_id')
     medio_de_pago=fields.Selection([("E", "Efectivo"),("T", "Transferencia"),("M", "Mercadopago")],string="Medio de Pago",index=True, default="M")
     currency_id = fields.Many2one(related='company_id.currency_id', depends=["company_id"], store=True, ondelete="restrict")
     company_id = fields.Many2one(

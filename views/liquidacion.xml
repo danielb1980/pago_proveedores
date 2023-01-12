@@ -65,7 +65,7 @@
                         </page>
                        <page string="Pagos Registrados" name="pagos_registrados">
                         
-                            <field name="pagos_id" readonly="1">
+                            <field name="pago_ids" readonly="1">
                              
                                 <tree>
                                     
@@ -107,49 +107,31 @@
 
         <record id="partner_tree" model="ir.ui.view">
             <field name="name">Partner</field>
-           
+            
             <field name="model">res.partner</field>
             <field name="arch" type="xml">
                 <tree>
                  <field name="name"/>
-                 <field name="phone"/>
-                 <field name="liquidacion_id"/>
+                 <field name="pago_proveedores_liquidacion_count"/>
+                 
                 </tree>
             </field>
              
                   
         </record>
-        <record id="partner_form" model="ir.ui.view">
-            <field name="name">Partner</field>
+
+        <record id="towing_partner_fields" model="ir.ui.view">
+           <field name="name">res.partner.towing.form</field>
             <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+
             <field name="arch" type="xml">
-                <tree>
-                 <field name="name"/>
-                 <field name="liquidacion_id"/>
-                 
-
-                </tree>
-            </field>
-            <field name="arch" type="xml">
-                <form string="parter">
-                    <header>
-                    
-
-                    </header>
-                    <sheet>
-                    
-                        <group>
-                            <group>
-                                <field name="liquidacion_id" />
-                                <field name="name"/>
-                                
-                            </group>
-                            
-                        </group>
-                         
-                    </sheet>
-
-                </form>
+                <div name="button_box" position="inside">
+                <button class="oe_stat_button" type="object" name="action_open_pago_proveedores_liquidacion" icon="fa-pencil-square-o" context="{'default_owner_id': active_id}">
+                    <field string="Liquidaciones" name="pago_proveedores_liquidacion_count" widget="statinfo" />
+                </button>
+                
+            </div>
             </field>
         </record>
 
@@ -168,26 +150,24 @@
                 </p>
             </field>
         </record> 
-       <record id="action_proveedores_tree"              model="ir.actions.act_window">
-            <field name="name">Proveedores</field>
-            <field name="res_model">res.partner</field>
-            <field name="view_mode">tree,form</field>
-            <field name="help" type="html">
-                <p class="o_view_nocontent_smiling_face">
-                    Crear un nuevo proveedor
-                </p>
-            </field>
-        </record>
-        <record id="action_partner_tree"              model="ir.actions.act_window">
+       
+        <record id="action_partner"              model="ir.actions.act_window">
             <field name="name">Partner</field>
             <field name="res_model">res.partner</field>
-            
             <field name="view_mode">tree,form</field>
+            <field name="domain">['&amp;',('towing_driver', '=', True),('is_company','=',False)]</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Crear un nuevo Partner
                 </p>
             </field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="partner_action_tree">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="partner_tree"/>
+            <field name="act_window_id" ref="action_partner"/>
         </record>
 
 
@@ -286,6 +266,6 @@
         <menuitem id="liquidacion_menu"  name="Liquidacion" parent="liquidacion_menu_root" action="action_liquidaciones" sequence="1"/>
         <menuitem id="liquidacion_facturas_menu"  name="Facturas" parent="liquidacion_menu_root" action="action_facturas_tree" sequence="2"/>
         <menuitem id="liquidacion_pagos_menu"  name="Pagos" parent="liquidacion_menu_root" action="action_pagos_tree" sequence="3"/>
-        <menuitem id="liquidacion_partner_menu"  name="Partner" parent="liquidacion_menu_root" action="action_partner_tree" sequence="0"/>
+        <menuitem id="liquidacion_partner_menu"  name="Partner" parent="liquidacion_menu_root" action="action_partner" sequence="0"/>
     </data>
 </odoo> 
