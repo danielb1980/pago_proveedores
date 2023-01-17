@@ -5,7 +5,8 @@
             <field name="model">pago_proveedores.liquidacion</field>
             <field name="arch" type="xml">
                 <tree>
-                 <field name="id"/>
+                 <field name="name"/>
+                 <field name="estado"/>
                  <field name="partner_id"/>
                  <field name="monto"/>
                  <field name="monto2"/>
@@ -40,6 +41,7 @@
                     <sheet>
                         <group>
                             <group>
+                                <field name="name" />
                                 <field name="partner_id" />
                                 <field name="observaciones"/>
                                 <field name="monto2"/>
@@ -99,7 +101,8 @@
                  <field name="sale_order_id"/>
                  <field name="purchase_order_id"/>
                  <field name="amount_total"/>
-                 <field name="liquidacion_id"/>
+                 <field name="name"/>
+                 <field name="liquidacion_estado"/>
                 </tree> 
             </field>
                   
@@ -156,6 +159,7 @@
             <field name="res_model">res.partner</field>
             <field name="view_mode">tree,form</field>
             <field name="domain">['&amp;',('towing_driver', '=', True),('is_company','=',False)]</field>
+            
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Crear un nuevo Partner
@@ -178,6 +182,8 @@
             <field name="name">Facturas</field>
             <field name="res_model">purchase.move</field>
             <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="purchase_move_view_search" />
+            <field name="context">{'purchase_move_not_liquidated': 1}</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Crear nueva Liquidacion

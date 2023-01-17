@@ -7,6 +7,7 @@ _logger = logging.getLogger(__name__)
 class PurchaseMove(models.Model):
         _inherit = "purchase.move"
         liquidacion_id=fields.Many2one("pago_proveedores.liquidacion",string="Liquidacion")
+        liquidacion_estado=fields.Selection(related='liquidacion_id.estado')
         
         def action_liquidate(self):
             # self es un recordset de uno o varios purchase.move
