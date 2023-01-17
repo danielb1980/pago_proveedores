@@ -4,7 +4,7 @@
             <field name="name">Liquidaciones</field>
             <field name="model">pago_proveedores.liquidacion</field>
             <field name="arch" type="xml">
-                <tree>
+                <tree create="0">
                  <field name="name"/>
                  <field name="estado"/>
                  <field name="partner_id"/>
@@ -19,7 +19,7 @@
             <field name="name">Liquidaciones</field>
             <field name="model">pago_proveedores.liquidacion</field>
             <field name="arch" type="xml">
-                <tree>
+                <tree create="0">
                  <field name="id"/>
                  <field name="partner_id"/>
                  <field name="estado"/>
@@ -91,7 +91,10 @@
             <field name="name">Facturas</field>
             <field name="model">purchase.move</field>
             <field name="arch" type="xml">
-                <tree>
+                <tree create="0">
+                <header>
+                  <button class="btn_primary" type="object" name="action_liquidate" string="Liquidar" confirm="¿Desea liquidar las facturas seleccionadas?"  />
+                 </header>
                  <field name="name"/>
                  <field name="company_id"/>
                  <field name="partner_id"/>
@@ -113,10 +116,11 @@
             
             <field name="model">res.partner</field>
             <field name="arch" type="xml">
-                <tree>
+                <tree create="0">
                  <field name="name"/>
-                 <field name="pago_proveedores_liquidacion_count"/>
-                 <field name="monto_pagado"/>
+                 <field name="pago_proveedores_liquidacion_count" string="Cantidad de Liquidaciones"/>
+                 <field name="monto_facturado" string="Facturado"/>
+                 <field name="monto_pagado" string="Pagado"/>
                  
                 </tree>
             </field>
@@ -199,7 +203,8 @@
             <field name="name">Pagos</field>
             <field name="model">pago_proveedores.pagos</field>
             <field name="arch" type="xml">
-                <tree>
+
+                <tree create="0" delete="0">
                  <field name="id" string="N de Pago"/>
                  <field name="partner_id"/>
                  <field name="liquidacion_id"/>

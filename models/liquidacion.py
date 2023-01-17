@@ -82,11 +82,12 @@ class liquidacion(models.Model):
 
     @api.depends('purchase_move_ids')
     def _compute_amount(self):
-        self.monto2 = sum([x.amount_total for x in self.purchase_move_ids])
-        # amounts=0
-        # for x in self.purchase_move_ids:
-        #     amounts+= x.amount_total
-        # self.monto2 = amounts 
+        # self.monto2 = sum([x.amount_total for x in self.purchase_move_ids])
+         amounts=0
+         for x in self.purchase_move_ids:
+            if x.partner_id == self.partner_id:
+              amounts+= x.amount_total
+              self.monto2 = amounts 
     
     @api.depends('partner_id')
     def _compute_document_number(self):

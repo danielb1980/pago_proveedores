@@ -9,7 +9,7 @@ class ResPartner(models.Model):
     liquidacion_ids=fields.One2many("pago_proveedores.liquidacion","partner_id",string="Liquidacion")
     pago_proveedores_liquidacion_count = fields.Integer(_('Liquidaciones_count'), compute='_compute_pago_proveedores_liquidacion_count')
     pagos=fields.Monetary(related='liquidacion_ids.monto2')
-    #monto_facturado = fields.Monetary(_('facturas_suma'), compute='_compute_purchase_move_suma')
+    monto_facturado = fields.Monetary(_('facturas_suma'), compute='_compute_purchase_move_suma')
     #monto_liquidado = fields.Monetary(_('facturas_liquidadas_suma'), compute='_compute_liquidaciones_suma')
     monto_pagado = fields.Monetary(_('pagos_suma'), compute='_compute_pago_proveedores_liquidacion_pagado')
     #monto_pendiente = fields.Monetary(_('facturas_no_liquidadas_suma'), compute='_compute_pago_proveedores_liquidacion_count')
@@ -25,7 +25,16 @@ class ResPartner(models.Model):
     
     @api.depends('liquidacion_ids')
     def _compute_pago_proveedores_liquidacion_pagado(self):
-       self.monto_pagado = sum([x.monto2 for x in self.liquidacion_ids]) 
+       self.monto_pagado = sum([x.monto2 for x in self.liquidacion_ids])
+        
+    @api.depends('purchase_move_ids')
+    def _compute_purchase_move_suma(self):
+       self.monto_facturado = sum([x.amount_total for x in self.purchase_move_ids])
+    
+    @api.depends('purchase_move_ids')
+    def _compute_purchase_move_suma(self):
+       self.monto_facturado = sum([x.amount_total for x in self.purchase_move_ids])
+    
 
 
 
