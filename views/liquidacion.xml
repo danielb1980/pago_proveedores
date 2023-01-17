@@ -116,6 +116,7 @@
                 <tree>
                  <field name="name"/>
                  <field name="pago_proveedores_liquidacion_count"/>
+                 <field name="monto_pagado"/>
                  
                 </tree>
             </field>
@@ -132,6 +133,9 @@
                 <div name="button_box" position="inside">
                 <button class="oe_stat_button" type="object" name="action_open_pago_proveedores_liquidacion" icon="fa-pencil-square-o" context="{'default_owner_id': active_id}">
                     <field string="Liquidaciones" name="pago_proveedores_liquidacion_count" widget="statinfo" />
+                </button>
+                <button class="oe_stat_button" type="object" name="action_open_pago_proveedores_liquidacion" icon="fa-pencil-square-o" context="{'default_owner_id': active_id}">
+                    <field string="Monto Pagado" name="pagos" widget="statinfo" />
                 </button>
                 
             </div>
