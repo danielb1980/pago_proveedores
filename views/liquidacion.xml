@@ -90,6 +90,7 @@
         <record id="facturas_tree" model="ir.ui.view">
             <field name="name">Facturas</field>
             <field name="model">purchase.move</field>
+             
             <field name="arch" type="xml">
                 <tree create="0">
                 <header>
@@ -191,7 +192,7 @@
             <field name="res_model">purchase.move</field>
             <field name="view_mode">tree,form</field>
             <field name="search_view_id" ref="purchase_move_view_search" />
-            <field name="context">{'purchase_move_not_liquidated': 1}</field>
+            <field name="context">{'search_default_purchase_move_not_liquidated':1}</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Crear nueva Liquidacion
