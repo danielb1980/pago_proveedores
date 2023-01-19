@@ -25,16 +25,30 @@ class ResPartner(models.Model):
     
     @api.depends('liquidacion_ids')
     def _compute_pago_proveedores_liquidacion_pagado(self):
-       self.monto_pagado = sum([x.monto2 for x in self.liquidacion_ids])
+       for record in self:
+            suma=0
+            for x in record.liquidacion_ids:
+                if x.estado =='P':
+                    suma = suma +x.monto2 
+            _logger.info(suma)
+            if sum!=0:
+                record.monto_pagado = suma
+            else:
+                record.monto_pagado = 0
         
     @api.depends('purchase_move_ids')
     def _compute_purchase_move_suma(self):
-       self.monto_facturado = sum([x.amount_total for x in self.purchase_move_ids])
-    
-    @api.depends('purchase_move_ids')
-    def _compute_purchase_move_suma(self):
-       self.monto_facturado = sum([x.amount_total for x in self.purchase_move_ids])
-    
+        for record in self:
+            suma=0
+            for x in record.purchase_move_ids:
+                suma =sum([x.amount_total for x in record.purchase_move_ids])
+        
+            _logger.info(suma)
+            if sum!=0:
+                record.monto_facturado = suma
+            else:
+                record.monto_facturado = 0
+        
 
 
 

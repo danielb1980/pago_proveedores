@@ -4,13 +4,13 @@
             <field name="name">Liquidaciones</field>
             <field name="model">pago_proveedores.liquidacion</field>
             <field name="arch" type="xml">
-                <tree create="0">
-                 <field name="name"/>
-                 <field name="estado"/>
+                <tree create="0" default_order='partner_id,name'>
                  <field name="partner_id"/>
-                 <field name="monto"/>
-                 <field name="monto2"/>
+                 <field name="name"/>
                  <field name="fecha"/>
+                 <field name="estado"/>
+                 <field name="monto2"/>
+                 
                 </tree>
             </field>
                   
@@ -19,13 +19,14 @@
             <field name="name">Liquidaciones</field>
             <field name="model">pago_proveedores.liquidacion</field>
             <field name="arch" type="xml">
-                <tree create="0">
-                 <field name="id"/>
+                <tree create="0" >
+                 
                  <field name="partner_id"/>
                  <field name="estado"/>
-                 <field name="monto"/>
+                 
                  <field name="monto2"/>
                  <field name="fecha"/>
+                 <field name="id"/>
                 </tree>
             </field>
             <field name="arch" type="xml">

@@ -79,15 +79,28 @@ class liquidacion(models.Model):
     def action_pagado(self):
           self.ensure_one()
           self.estado=('P')
-
-    @api.depends('purchase_move_ids')
+    
+    
+    @api.depends('purchase_move_ids','monto2')
     def _compute_amount(self):
-        # self.monto2 = sum([x.amount_total for x in self.purchase_move_ids])
-         amounts=0
-         for x in self.purchase_move_ids:
-            if x.partner_id == self.partner_id:
-              amounts+= x.amount_total
-              self.monto2 = amounts 
+        #self.monto2 = sum([x.amount_total for x in self.purchase_move_ids])
+        
+        for record in self:
+            suma=0
+            for x in record.purchase_move_ids:
+                suma =sum([x.amount_total for x in record.purchase_move_ids])
+        
+            _logger.info(suma)
+            if sum!=0:
+                record.monto2 = suma
+            else:
+                record.monto2 = 0
+        
+        # amounts=0
+        # for x in self.purchase_move_ids:
+        #    if x.partner_id == self.partner_id:
+        #      amounts+= x.amount_total
+        #      self.monto2 = amounts 
     
     @api.depends('partner_id')
     def _compute_document_number(self):
